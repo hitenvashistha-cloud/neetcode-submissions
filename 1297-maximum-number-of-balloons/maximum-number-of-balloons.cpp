@@ -4,11 +4,11 @@ public:
         string s= "balloon";
         int hash[26] ={0};
         int n  = 0;
-        bool res = false;
+        
         for(char ch : text){
             hash[ch-'a']++;
         }
-        while(!res){
+        while(true){
             for(char ch : s){   
               if(--hash[ch- 'a'] < 0){
                 return n;
@@ -16,6 +16,6 @@ public:
         } 
         n++;
         }
-        return n ;
+        return 0 ;
     }
 };

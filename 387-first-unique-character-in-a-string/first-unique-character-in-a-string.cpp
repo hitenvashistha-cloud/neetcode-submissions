@@ -6,7 +6,7 @@ public:
             f[ch]++;
         }
         for(int i = 0 ; i < s.size(); i++){
-            if(f[s[i]] < 2){
+            if(f[s[i]] == 1){
                 return i;
             }
         }

@@ -10,19 +10,6 @@
  */
 class Solution {
 public:
-  ListNode* reverse(ListNode* head,int times){
-  ListNode* prev = nullptr;
-  ListNode* curr = head;
-  
-  while(times-- && curr){
-    ListNode* next  = curr->next;
-    curr->next =prev;
-    prev = curr;
-    curr = next;
-  }
-  head->next = curr;
-  return prev;
-}
 int len(ListNode* head) {
     ListNode* temp = head;
     int count = 0;
@@ -33,22 +20,24 @@ int len(ListNode* head) {
     return count;
 }
     ListNode* rotateRight(ListNode* head, int k) {
-       
         if(head == NULL || head->next == NULL) return head;
-         int n = len(head);
+        int n = len(head);
         k = k%n;
-        if(k == 0) return head;
+        if(k==0) return head;
+        ListNode* curr = head;
         
-        head = reverse(head,n);
-        ListNode* firstTail = head; 
+        while(curr->next){
+            curr = curr->next; 
+        }
+        curr->next = head;
 
-        head = reverse(head,k);
-        ListNode* second = firstTail->next;
-          
-         second = reverse(second,n - k);
-         firstTail->next = second;
-
-        return head;
+int times = n - k -1;
+ListNode* temp = head;
+       while(times--){
+         temp = temp->next;
+       }
+       ListNode* ans  = temp->next;
+       temp->next = nullptr;
+       return ans;
     }
-   
 };

@@ -5,6 +5,7 @@ public:
         for(int i = 0; i < nums.size(); i++){
             if(f[nums[i]] == 1){
                 return true;
+                break;
             }
             f[nums[i]]++;
         }

@@ -1,39 +1,27 @@
 class Solution {
 public:
     vector<int> resultArray(vector<int>& nums) {
-        vector<int> res1;
-        vector<int> res2;
-        stack<int> s1;
-        stack<int> s2;
-         s1.push(nums[0]);
-        s2.push(nums[1]);
-        for(int i = 2 ; i < nums.size();i++){
-          int a1 = s1.top();
-          int a2 = s2.top();
-          if(a1 > a2){
-            s1.push(nums[i]);
-          }else{
-            s2.push(nums[i]);
-          }
-        }
-        while(!s1.empty()){
-               res1.push_back(s1.top());
-               s1.pop();
-        }
+        int n=  nums.size();
+        vector<int> a1;
+        vector<int> a2;
+        a1.push_back(nums[0]);
+        a2.push_back(nums[1]);
        
-        reverse(res1.begin(),res1.end());
-
-        while(!s2.empty()){
-               res2.push_back(s2.top());
-               s2.pop();
+        for(int i = 2; i < nums.size(); i++){
+            if(a1.back() > a2.back()){
+                
+              a1.push_back(nums[i]);
+            }else{
+                 a2.push_back(nums[i]);
+            }
         }
-        reverse(res2.begin(),res2.end());
         vector<int> res;
-            res.reserve(res1.size() + res2.size());
-
-    // 2. Insert elements from the first and second arrays
-    res.insert(res.end(), res1.begin(), res1.end());
-    res.insert(res.end(), res2.begin(), res2.end());
-    return res;
+        for(int i = 0; i < a1.size(); i++){
+            res.push_back(a1[i]);
+        }
+        for(int i = 0; i < a2.size(); i++){
+            res.push_back(a2[i]);
+        }
+        return res;
     }
 };
